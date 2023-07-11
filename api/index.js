@@ -28,10 +28,14 @@ mongoose.connection.on("connected", () => {
 });
 
 //middleware
-app.use("/auth", authRouth);
-app.use("/hotels", hotelsRouth);
-app.use("/rooms", roomsRouth);
-app.use("/users", usersRouth);
+
+//一定要加，才可以讀到JSON格式的API Request
+app.use(express.json()); // It parses incoming requests with JSON payloads and is based on body-parser.
+
+app.use("/api/auth", authRouth);
+app.use("/api/hotels", hotelsRouth);
+app.use("/api/rooms", roomsRouth);
+app.use("/api/users", usersRouth);
 
 app.listen(8800, () => {
   connect();
