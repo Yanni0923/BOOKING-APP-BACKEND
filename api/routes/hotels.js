@@ -50,4 +50,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 //GET ALL
+router.get("/", async (req, res) => {
+  try {
+    // gets a list of documents that match filter.
+    const hotels = await Hotel.find();
+    res.status(200).json(hotels);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 export default router;
