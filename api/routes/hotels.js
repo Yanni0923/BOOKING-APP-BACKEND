@@ -41,16 +41,13 @@ router.delete("/:id", async (req, res) => {
   }
 });
 //GET
-router.delete("/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    // 沒帶參數的話 updatedHotel 會吃到更新「前」的資料
-    // If you set new: true, findOneAndUpdate() will instead give you the object after update was applied.
-    await Hotel.findByIdAndDelete(req.params.id);
-    res.status(200).json("Hotel has been deleted.");
+    const hotel = await Hotel.findById(req.params.id);
+    res.status(200).json(hotel);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-//GET
 //GET ALL
 export default router;
